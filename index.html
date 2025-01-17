@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPLASHXL MENU</title>
+    <title>LaLibertaPerformance MENU</title>
     <style>
         body {
             margin: 0;
@@ -28,34 +28,52 @@
         #resimListesi {
             list-style: none;
             padding: 0;
-            margin: 30px 0 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            margin: 30px 0;
         }
 
         #resimListesi li {
-            margin: 20px;
+            margin: 20px 0; /* Add margin between each image */
+            text-align: center; /* Center images */
         }
 
         #resimListesi img {
             max-width: 200px;
             height: auto;
             display: block;
+            margin: 0 auto;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         #resimListesi img:hover {
             transform: scale(1.05);
         }
+
+        /* Fullscreen styles */
+        #fullscreen-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #fullscreen-container img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body>
 
-    <div id="logo">
-    </div>
 
     <ul id="resimListesi">
         <li><img src="https://github.com/Lalibertaperformance/lalibertaperformance.github.io/raw/main/menu-image/1.png.svg" alt="Resim 1"></li>
@@ -63,6 +81,31 @@
         <li><img src="https://github.com/Lalibertaperformance/lalibertaperformance.github.io/raw/main/menu-image/3.png.svg" alt="Resim 3"></li>
         <li><img src="https://github.com/Lalibertaperformance/lalibertaperformance.github.io/raw/main/menu-image/4.png.svg" alt="Resim 4"></li>
     </ul>
+
+    <!-- Fullscreen container -->
+    <div id="fullscreen-container">
+        <img id="fullscreen-image" src="" alt="Fullscreen Image">
+    </div>
+
+    <script>
+        // Tüm resimleri seç
+        const images = document.querySelectorAll('#resimListesi img');
+        const fullscreenContainer = document.getElementById('fullscreen-container');
+        const fullscreenImage = document.getElementById('fullscreen-image');
+
+        // Resme tıklandığında tam ekran göster
+        images.forEach(image => {
+            image.addEventListener('click', () => {
+                fullscreenImage.src = image.src; // Tıklanan resmin kaynağını al
+                fullscreenContainer.style.display = 'flex'; // Tam ekran konteynerini göster
+            });
+        });
+
+        // Tam ekran alanına tıklayınca kapanmasını sağla
+        fullscreenContainer.addEventListener('click', () => {
+            fullscreenContainer.style.display = 'none'; // Tam ekranı gizle
+        });
+    </script>
 
 </body>
 </html>
